@@ -82,7 +82,7 @@ public class EventHandlers : CustomEventsHandler
 
     public override void OnServerWaitingForPlayers()
     {
-        _ = Scp999.CheckForUpdatesAsync(Scp999.Instance.Version);
+        _ = VersionManager.CheckForUpdatesAsync(Scp999.Instance.Version);
         base.OnServerWaitingForPlayers();
     }
 }
