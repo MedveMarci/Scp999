@@ -120,6 +120,7 @@
         <Compile Include="Patches\DoorCrusherPatch.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="VersionManager.cs" />
         <Reference Include="System" />
     </ItemGroup>
     <ItemGroup>
