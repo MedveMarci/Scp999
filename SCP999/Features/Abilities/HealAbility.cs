@@ -29,7 +29,7 @@ public class HealAbility : Ability
                 continue;
 
             if (!(Vector3.Distance(player.Position, ply.Position) < Scp999.Instance.Config!.Distance)) continue;
-            ply.Heal(100);
+            ply.Heal(Scp999.Instance.Config.HealAmount);
         }
     }
 }
