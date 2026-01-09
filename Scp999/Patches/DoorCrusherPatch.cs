@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Scp999.Patches;
 
-[HarmonyPatch(typeof(DoorCrusherExtension), "OnTriggerEnter")]
+[HarmonyPatch(typeof(DoorCrusherExtension), nameof(DoorCrusherExtension.OnTriggerEnter))]
 public class DoorCrusherPatch
 {
     [HarmonyPrefix]
