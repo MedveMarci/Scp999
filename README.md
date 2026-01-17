@@ -1,4 +1,3 @@
-<h1 align="center">⚠️ This version supports only LabAPI and you need the latest <a href="https://github.com/UncomplicatedCustomServer/UncomplicatedCustomRoles">UncomplicatedCustomRoles</a> ⚠️</h1>
 <h1 align="center"> SCP-999 - "The Tickle Monster"</h1>
 <h2 align="center"> 😍 Adds a cute gelatin monster to the game 🥰</h2>
 <p align="center">
