@@ -10,7 +10,7 @@ public class Config
 
     [Description("Distance in which the heal ability can heal players.")]
     public float Distance { get; set; } = 3f;
-    
+
     [Description("The amount of healing for the Heal Ability.")]
     public float HealAmount { get; set; } = 100f;
 

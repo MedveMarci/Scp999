@@ -6,6 +6,7 @@ using LabApi.Events.Arguments.Scp173Events;
 using LabApi.Events.Arguments.Scp3114Events;
 using LabApi.Events.CustomHandlers;
 using PlayerRoles;
+using Scp999.ApiFeatures;
 using UncomplicatedCustomRoles.Extensions;
 
 namespace Scp999;
@@ -82,7 +83,7 @@ public class EventHandlers : CustomEventsHandler
 
     public override void OnServerWaitingForPlayers()
     {
-        _ = VersionManager.CheckForUpdatesAsync(Scp999.Instance.Version);
+        ApiManager.CheckForUpdates();
         base.OnServerWaitingForPlayers();
     }
 }

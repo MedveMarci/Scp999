@@ -1,6 +1,7 @@
 ﻿using LabApi.Features.Wrappers;
 using RoleAPI.API.Interfaces;
 using RoleAPI.API.Managers;
+using Scp999.ApiFeatures;
 using UnityEngine;
 
 namespace Scp999.Features.Abilities;
@@ -28,8 +29,8 @@ public class HealAbility : Ability
             if (player == ply)
                 continue;
 
-            if (!(Vector3.Distance(player.Position, ply.Position) < Scp999.Instance.Config!.Distance)) continue;
-            ply.Heal(Scp999.Instance.Config.HealAmount);
+            if (!(Vector3.Distance(player.Position, ply.Position) < Scp999.Singleton.Config!.Distance)) continue;
+            ply.Heal(Scp999.Singleton.Config.HealAmount);
         }
     }
 }

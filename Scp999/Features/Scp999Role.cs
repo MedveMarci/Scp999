@@ -10,22 +10,23 @@ using UncomplicatedCustomRoles.API.Features.Behaviour;
 using UncomplicatedCustomRoles.API.Features.CustomModules;
 using UncomplicatedCustomRoles.Manager;
 using UnityEngine;
+using YamlDotNet.Serialization;
 
 namespace Scp999.Features;
 
 public class Scp999Role : ExtendedRole
 {
-    public override int Id { get; set; } = 999;
-    public override string Name { get; set; } = "<color=#960018>SCP-999</color>";
-    public override bool OverrideRoleName { get; set; } = true;
-    public override string Nickname { get; set; } = null;
+    [YamlIgnore] public override int Id { get; set; } = 999;
+    [YamlIgnore] public override string Name { get; set; } = "<color=#960018>SCP-999</color>";
+    [YamlIgnore] public override bool OverrideRoleName { get; set; } = true;
+    [YamlIgnore] public override string Nickname { get; set; } = null;
     public override string CustomInfo { get; set; } = "<color=#960018>Other Alive</color>";
     public override string BadgeName { get; set; } = "";
     public override string BadgeColor { get; set; } = "";
-    public override string SpawnHint { get; set; } = "";
-    public override RoleTypeId Role { get; set; } = RoleTypeId.Tutorial;
-    public override Team? Team { get; set; } = PlayerRoles.Team.OtherAlive;
-    public override RoleTypeId RoleAppearance { get; set; } = RoleTypeId.Tutorial;
+    [YamlIgnore] public override string SpawnHint { get; set; } = "";
+    [YamlIgnore] public override RoleTypeId Role { get; set; } = RoleTypeId.Tutorial;
+    [YamlIgnore] public override Team? Team { get; set; } = PlayerRoles.Team.OtherAlive;
+    [YamlIgnore] public override RoleTypeId RoleAppearance { get; set; } = RoleTypeId.Tutorial;
     public override List<Team> IsFriendOf { get; set; } = [];
 
     public override HealthBehaviour Health { get; set; } = new()
@@ -66,17 +67,17 @@ public class Scp999Role : ExtendedRole
         }
     ];
 
-    public override bool CanEscape { get; set; } = false;
+    [YamlIgnore] public override bool CanEscape { get; set; } = false;
 
     public override string SpawnBroadcast { get; set; } =
         "<color=#ffa500>\ud83d\ude04 You are SCP-999 - The tickle monster! \ud83d\ude04\n" +
         "Heal Humans, dance and calm down SCPs in facility\n" +
         "Use abilities by clicking on the buttons</color>";
 
-    public override ushort SpawnBroadcastDuration { get; set; } = 15;
-    public override List<ItemType> Inventory { get; set; } = [];
-    public override Dictionary<ItemType, ushort> Ammo { get; set; } = [];
-    public override float DamageMultiplier { get; set; } = 0;
+    public override ushort SpawnBroadcastDuration { get; set; } = 10;
+    [YamlIgnore] public override List<ItemType> Inventory { get; set; } = [];
+    [YamlIgnore] public override Dictionary<ItemType, ushort> Ammo { get; set; } = [];
+    [YamlIgnore] public override float DamageMultiplier { get; set; } = 0;
 
     public override SpawnBehaviour SpawnSettings { get; set; } = new()
     {

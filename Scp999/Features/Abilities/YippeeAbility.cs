@@ -1,6 +1,7 @@
 ﻿using LabApi.Features.Wrappers;
 using RoleAPI.API.Interfaces;
 using RoleAPI.API.Managers;
+using Scp999.ApiFeatures;
 using UnityEngine;
 
 namespace Scp999.Features.Abilities;
