@@ -136,7 +136,7 @@ public class Scp999Role : ExtendedRole
     {
         role.AddModule(
             typeof(CustomScpAnnouncer),
-            new Dictionary<string, object> { { "name", "SCP999" } }
+            new Dictionary<string, object> { { "name", "SCP-999" } }
         );
         role.AddModule(typeof(ColorfulNickname), new Dictionary<string, object> { { "color", "#960018" } });
         role.AddModule(typeof(ColorfulRaName), new Dictionary<string, object> { { "color", "#960018" } });
