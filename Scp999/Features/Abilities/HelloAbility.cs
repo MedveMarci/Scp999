@@ -1,37 +1,37 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.IO;
 using CustomPlayerEffects;
 using LabApi.Features.Wrappers;
+using LabApi.Loader.Features.Paths;
 using MEC;
-using RoleAPI.API.Interfaces;
-using RoleAPI.API.Managers;
-using Scp999.ApiFeatures;
+using RoleAPI.API.Abilities;
 using UnityEngine;
 
 namespace Scp999.Features.Abilities;
 
-public class HelloAbility : Ability
+public class HelloAbility : AbilityBase
 {
     public override string Name => "Hello";
     public override string Description => "Greet the players and wave your paw";
-    public override int KeyId => 9992;
-    public override KeyCode KeyCode => KeyCode.F;
+    public override KeyCode DefaultKey => KeyCode.F;
     public override float Cooldown => 15f;
+    public override bool AutoReleaseLock => false;
 
-    protected override void ActivateAbility(Player player, ObjectManager manager)
+    protected override void OnExecute(AbilityExecutionContext context)
     {
-        player.EnableEffect<Ensnared>(duration: 3f);
-        manager.Animator?.Play("HelloAnimation");
+        context.LocksDuringExecution = true;
+        context.Player.EnableEffect<Ensnared>();
+        context.Animator?.Play("HelloAnimation");
 
         var clipName = Random.Range(0, 2) == 0 ? "hello" : "hi";
-        if (!AudioClipStorage.AudioClips.ContainsKey($"{clipName}"))
-            LogManager.Error(
-                $"[Scp999] The audio file '{clipName}.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
-        else
-            manager.AudioPlayer?.AddClip(clipName, 0.5f);
-        Timing.RunCoroutine(CheckEndOfAnimation(player, manager.Animator));
+        context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", $"{clipName}.ogg");
+
+        if (context.Animator == null || context.Animator.Animators.Count == 0) return;
+        Timing.RunCoroutine(CheckEndOfAnimation(context.Player, context.Animator.Animators[0], context));
     }
 
-    private static IEnumerator<float> CheckEndOfAnimation(Player player, Animator animator)
+    private static IEnumerator<float> CheckEndOfAnimation(Player player, Animator animator,
+        AbilityExecutionContext context)
     {
         yield return Timing.WaitForSeconds(0.1f);
         while (true)
@@ -40,6 +40,7 @@ public class HelloAbility : Ability
             if (!stateInfo.IsName("HelloAnimation"))
             {
                 player.DisableEffect<Ensnared>();
+                context.CompleteAnimation();
                 yield break;
             }
 

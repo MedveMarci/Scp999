@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using PlayerRoles;
-using RoleAPI.API;
-using RoleAPI.API.Configs;
-using RoleAPI.API.CustomModules;
+using RoleAPI.API.Abilities;
+using RoleAPI.API.Roles;
+using RoleAPI.API.Schematics;
 using Scp999.Features.Abilities;
+using Scp999.Features.UcrCustmodModules;
+using SecretLabNAudio.Core;
 using UncomplicatedCustomRoles.API.Enums;
 using UncomplicatedCustomRoles.API.Features;
 using UncomplicatedCustomRoles.API.Features.Behaviour;
@@ -14,7 +16,7 @@ using YamlDotNet.Serialization;
 
 namespace Scp999.Features;
 
-public class Scp999Role : ExtendedRole
+public class Scp999Role : UcrRoleBase
 {
     [YamlIgnore] public override int Id { get; set; } = 999;
     [YamlIgnore] public override string Name { get; set; } = "<color=#960018>SCP-999</color>";
@@ -92,44 +94,28 @@ public class Scp999Role : ExtendedRole
         SpawnRoles = [RoleTypeId.Scp096]
     };
 
-    public override SchematicConfig SchematicConfig { get; set; } = new()
+    public override SpeakerSettings? DefaultSpeakerSettings { get; } = new SpeakerSettings
     {
-        SchematicName = "SCP999",
-        Offset = new Vector3(0f, -0.75f, 0f),
-        Rotation = new Vector3(0f, 0f, 0f)
-    };
-
-    public override HintConfig HintConfig { get; set; } = new()
-    {
-        Text = "<align=right><size=50><color=#ffa500>\ud83d\ude06 <b>SCP-999</b></color></size>\n" +
-               "Abilities:\n" +
-               "<color=%color%>Yippee {0}</color>\n" +
-               "<color=%color%>Hello {1}</color>\n" +
-               "<color=%color%>Heal {2}</color>\n" +
-               "<color=%color%>Dance {3}</color>\n" +
-               "\n<size=18>if you cant use abilities\nremove \u2b50 in settings</size></align>",
-        AvailableAbilityColor = "#ffa500",
-        UnavailableAbilityColor = "#966100"
-    };
-
-    public override AudioConfig AudioConfig { get; set; } = new()
-    {
-        Name = "scp999",
-        Volume = 100,
+        Volume = 0.5f,
         IsSpatial = true,
         MinDistance = 5f,
         MaxDistance = 15f
     };
 
-    public override AbilityConfig AbilityConfig { get; set; } = new()
+    public override RoleSchematic Schematic { get; } = new()
     {
-        AbilityTypes =
-        [
-            typeof(YippeeAbility),
-            typeof(HelloAbility),
-            typeof(HealAbility),
-            typeof(AnimationAbility)
-        ]
+        Name = "Scp999",
+        PositionOffset = new Vector3(0f, -0.75f, 0f),
+        HideCarrierModel = true
+    };
+
+    /// Abilities available to this role
+    public override IReadOnlyList<AbilityBase> Abilities { get; } = new List<AbilityBase>
+    {
+        new YippeeAbility(),
+        new HelloAbility(),
+        new HealAbility(),
+        new AnimationAbility()
     };
 
     public override void OnSpawned(SummonedCustomRole role)

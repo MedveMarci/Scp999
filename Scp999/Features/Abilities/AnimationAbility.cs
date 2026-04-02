@@ -1,92 +1,83 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.IO;
 using CustomPlayerEffects;
 using LabApi.Features.Wrappers;
+using LabApi.Loader.Features.Paths;
 using MEC;
-using RoleAPI.API.Interfaces;
-using RoleAPI.API.Managers;
-using Scp999.ApiFeatures;
+using RoleAPI.API.Abilities;
 using UnityEngine;
 
 namespace Scp999.Features.Abilities;
 
-public class AnimationAbility : Ability
+public class AnimationAbility : AbilityBase
 {
     public override string Name => "Dance";
     public override string Description => "Play a random funny animation";
-    public override int KeyId => 9994;
-    public override KeyCode KeyCode => KeyCode.T;
+    public override KeyCode DefaultKey => KeyCode.T;
     public override float Cooldown => 15f;
+    public override bool AutoReleaseLock => false;
 
-    protected override void ActivateAbility(Player player, ObjectManager manager)
+    protected override void OnExecute(AbilityExecutionContext context)
     {
-        player.EnableEffect<Ensnared>(duration: 30f);
+        context.Player.EnableEffect<Ensnared>();
 
         var rand = Random.Range(0, 100) + 1;
+        context.LocksDuringExecution = true;
         switch (rand)
         {
             // throwing balls
             case > 0 and <= 15:
             {
-                manager.Animator?.Play("FunAnimation1");
-                if (!AudioClipStorage.AudioClips.ContainsKey("circus"))
-                    LogManager.Error(
-                        "[Scp999] The audio file 'circus.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
-                else
-                    manager.AudioPlayer?.AddClip("circus");
+                context.Animator?.Play("FunAnimation1");
+                context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "circus.ogg");
             }
                 break;
 
             // Jump x3
             case > 15 and <= 60:
             {
-                manager.Animator?.Play("FunAnimation2");
-                if (!AudioClipStorage.AudioClips.ContainsKey("jump"))
-                    LogManager.Error(
-                        "[Scp999] The audio file 'jump.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
-                else
-                    manager.AudioPlayer?.AddClip("jump");
+                context.Animator?.Play("FunAnimation2");
+                context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "funnytoy.ogg");
             }
                 break;
 
             // Shrinking
             case > 60 and <= 90:
             {
-                manager.Animator?.Play("FunAnimation3");
-                if (!AudioClipStorage.AudioClips.ContainsKey("funnytoy"))
-                    LogManager.Error(
-                        "[Scp999] The audio file 'funnytoy.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
-                else
-                    manager.AudioPlayer?.AddClip("funnytoy");
+                context.Animator?.Play("FunAnimation3");
+                context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "funnytoy.ogg");
             }
                 break;
 
             // UwU - Secret animation
             case > 90:
             {
-                manager.Animator?.Play("FunAnimation4");
-                if (!AudioClipStorage.AudioClips.ContainsKey("uwu"))
-                    LogManager.Error(
-                        "[Scp999] The audio file 'uwu.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
-                else
-                    manager.AudioPlayer?.AddClip("uwu");
+                context.Animator?.Play("FunAnimation4");
+                context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "uwu.ogg");
             }
                 break;
         }
 
-        Timing.RunCoroutine(CheckEndOfAnimation(player, manager.Animator));
+        if (context.Animator == null || context.Animator.Animators.Count == 0) return;
+        context.LocksDuringExecution = true;
+        Timing.RunCoroutine(CheckEndOfAnimation(context.Player, context.Animator.Animators[0], context));
     }
 
-    private static IEnumerator<float> CheckEndOfAnimation(Player player, Animator animator)
+    private static IEnumerator<float> CheckEndOfAnimation(Player player, Animator animator,
+        AbilityExecutionContext context)
     {
         yield return Timing.WaitForSeconds(0.1f);
-        var initialClipName = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        var clipInfos = animator.GetCurrentAnimatorClipInfo(0);
+        if (clipInfos.Length == 0) yield break;
+        var initialClipName = clipInfos[0].clip.name;
 
         while (true)
         {
-            var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
-            if (clipInfo[0].clip.name != initialClipName)
+            var currentClipInfos = animator.GetCurrentAnimatorClipInfo(0);
+            if (currentClipInfos.Length == 0 || currentClipInfos[0].clip.name != initialClipName)
             {
                 player.DisableEffect<Ensnared>();
+                context.CompleteAnimation();
                 yield break;
             }
 

@@ -47,7 +47,7 @@ internal static class LogManager
 
         if (Scp999.Singleton.Config?.Scp999Role != null)
         {
-            stringBuilder.AppendLine("\n--- SCP-035 CustomRole ---\n");
+            stringBuilder.AppendLine("\n--- SCP-999 CustomRole ---\n");
             stringBuilder.Append($"{YamlConfigParser.Serializer.Serialize(Scp999.Singleton.Config.Scp999Role)}");
         }
 

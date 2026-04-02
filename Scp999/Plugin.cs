@@ -2,7 +2,6 @@
 using LabApi.Events.CustomHandlers;
 using LabApi.Features;
 using LabApi.Loader.Features.Plugins;
-using RoleAPI;
 using Scp999.Features;
 
 namespace Scp999;
@@ -17,7 +16,7 @@ public class Scp999 : Plugin<Config>
         "Adds SCP-999, the tickling monster, as a custom role with unique abilities and features.";
 
     public override string Author => "MedveMarci";
-    public override Version Version => new(1, 1, 5);
+    public override Version Version => new(1, 2, 0);
     public override Version RequiredApiVersion { get; } = new(LabApiProperties.CompiledVersion);
     public static Scp999 Singleton { get; private set; }
     private Scp999Role Role { get; set; }
@@ -25,9 +24,9 @@ public class Scp999 : Plugin<Config>
     public override void Enable()
     {
         Singleton = this;
-        Startup.SetupAPI(Name);
-        Startup.RegisterCustomRole(Role);
+        RoleAPI.RoleAPI.RegisterRole(Role);
         CustomHandlersManager.RegisterEventsHandler(_eventHandler);
+        AudioSetup.EnsureAudioFiles();
     }
 
     public override void LoadConfigs()
@@ -39,7 +38,7 @@ public class Scp999 : Plugin<Config>
     public override void Disable()
     {
         Singleton = null;
-        Startup.UnRegisterCustomRole(Role);
         CustomHandlersManager.UnregisterEventsHandler(_eventHandler);
+        RoleAPI.RoleAPI.UnregisterRole(Role);
     }
 }
