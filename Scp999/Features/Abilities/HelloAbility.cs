@@ -21,30 +21,21 @@ public class HelloAbility : AbilityBase
     {
         context.LocksDuringExecution = true;
         context.Player.EnableEffect<Ensnared>();
-        context.Animator?.Play("HelloAnimation");
+        context.PlayAnimation("HelloAnimation");
 
         var clipName = Random.Range(0, 2) == 0 ? "hello" : "hi";
         context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", $"{clipName}.ogg");
 
-        if (context.Animator == null || context.Animator.Animators.Count == 0) return;
-        Timing.RunCoroutine(CheckEndOfAnimation(context.Player, context.Animator.Animators[0], context));
+        if (context.Animator == null) return;
+        Timing.RunCoroutine(CheckEndOfAnimation(context.Player, context));
     }
 
-    private static IEnumerator<float> CheckEndOfAnimation(Player player, Animator animator,
-        AbilityExecutionContext context)
+    private static IEnumerator<float> CheckEndOfAnimation(Player player, AbilityExecutionContext context)
     {
         yield return Timing.WaitForSeconds(0.1f);
-        while (true)
-        {
-            var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            if (!stateInfo.IsName("HelloAnimation"))
-            {
-                player.DisableEffect<Ensnared>();
-                context.CompleteAnimation();
-                yield break;
-            }
-
+        while (context.IsAnimationPlaying())
             yield return Timing.WaitForSeconds(0.3f);
-        }
+        player.DisableEffect<Ensnared>();
+        context.CompleteAnimation();
     }
 }

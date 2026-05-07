@@ -28,7 +28,7 @@ public class AnimationAbility : AbilityBase
             // throwing balls
             case > 0 and <= 15:
             {
-                context.Animator?.Play("FunAnimation1");
+                context.PlayAnimation("FunAnimation1");
                 context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "circus.ogg");
             }
                 break;
@@ -36,7 +36,7 @@ public class AnimationAbility : AbilityBase
             // Jump x3
             case > 15 and <= 60:
             {
-                context.Animator?.Play("FunAnimation2");
+                context.PlayAnimation("FunAnimation2");
                 context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "funnytoy.ogg");
             }
                 break;
@@ -44,7 +44,7 @@ public class AnimationAbility : AbilityBase
             // Shrinking
             case > 60 and <= 90:
             {
-                context.Animator?.Play("FunAnimation3");
+                context.PlayAnimation("FunAnimation3");
                 context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "funnytoy.ogg");
             }
                 break;
@@ -52,36 +52,23 @@ public class AnimationAbility : AbilityBase
             // UwU - Secret animation
             case > 90:
             {
-                context.Animator?.Play("FunAnimation4");
+                context.PlayAnimation("FunAnimation4");
                 context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "uwu.ogg");
             }
                 break;
         }
 
-        if (context.Animator == null || context.Animator.Animators.Count == 0) return;
+        if (context.Animator == null) return;
         context.LocksDuringExecution = true;
-        Timing.RunCoroutine(CheckEndOfAnimation(context.Player, context.Animator.Animators[0], context));
+        Timing.RunCoroutine(CheckEndOfAnimation(context.Player, context));
     }
 
-    private static IEnumerator<float> CheckEndOfAnimation(Player player, Animator animator,
-        AbilityExecutionContext context)
+    private static IEnumerator<float> CheckEndOfAnimation(Player player, AbilityExecutionContext context)
     {
         yield return Timing.WaitForSeconds(0.1f);
-        var clipInfos = animator.GetCurrentAnimatorClipInfo(0);
-        if (clipInfos.Length == 0) yield break;
-        var initialClipName = clipInfos[0].clip.name;
-
-        while (true)
-        {
-            var currentClipInfos = animator.GetCurrentAnimatorClipInfo(0);
-            if (currentClipInfos.Length == 0 || currentClipInfos[0].clip.name != initialClipName)
-            {
-                player.DisableEffect<Ensnared>();
-                context.CompleteAnimation();
-                yield break;
-            }
-
+        while (context.IsAnimationPlaying())
             yield return Timing.WaitForSeconds(0.5f);
-        }
+        player.DisableEffect<Ensnared>();
+        context.CompleteAnimation();
     }
 }
