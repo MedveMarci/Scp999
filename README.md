@@ -30,14 +30,25 @@
   <img src="https://github.com/MedveMarci/SCP-999/blob/main/Photos/Jump.gif" alt="SCP-999 - `Abilities`">
 </p>
 
+# Dependencies
+
+| Dependency                                                                      | Required | Description              |
+|---------------------------------------------------------------------------------|----------|--------------------------|
+| [ProjectMER](https://github.com/Michal78900/ProjectMER/releases/latest)         | Yes      | Map/schematic loading    |
+| [RoleAPI](https://github.com/MedveMarci/RoleAPI/releases/latest)                | Yes      | Custom role support      |
+| [SecretLabNAudio](https://github.com/Axwabo/SecretLabNAudio/releases/latest)    | Yes      | Audio playback           |
+
 # Installation
 
-- ``Scp999.dll`` move to => ``~\LabAPI\plugins\global``
-- ``Audio.tar.gz`` unarchive to => ``~\LabAPI\configs\scp999\Audio``
-- ``Schematics.tar.gz`` unarchive to => ``~\LabAPI\configs\ProjectMER\Schematics``
-- ``dependencies.zip`` unarchive to => ``~\LabAPI\dependencies\global``
-- Install the [``ProjectMER.dll``](https://github.com/Michal78900/ProjectMER/releases/latest) to =>
-  ``~\LabAPI\plugins\global``
+1. Download the [latest release](https://github.com/MedveMarci/SCP-999/releases/latest):
+   - `Scp999.dll`
+   - `Audio.tar.gz`
+   - `Schematics.tar.gz`
+2. Place `Scp999.dll` in `LabAPI/plugins/global/`
+3. Extract `Audio.tar.gz` to `LabAPI/configs/Scp999/Audio/`
+4. Extract `Schematics.tar.gz` to `LabAPI/configs/ProjectMER/Schematics/`
+5. Install the required dependencies listed above
+   - If you're using the RueI version of RoleAPI, you need to install Scp999-RueI.dll instead of the normal one.
 
 # Commands
 
