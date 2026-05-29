@@ -42,14 +42,12 @@
 
 1. Download the [latest release](https://github.com/MedveMarci/SCP-999/releases/latest):
    - `Scp999.dll`
-   - `dependencies.zip`
    - `Audio.tar.gz`
    - `Schematics.tar.gz`
 2. Place `Scp999.dll` in `LabAPI/plugins/global/`
-3. Extract `dependencies.zip` to `LabAPI/dependencies/global/`
-4. Extract `Audio.tar.gz` to `LabAPI/configs/Scp999/Audio/`
-5. Extract `Schematics.tar.gz` to `LabAPI/configs/ProjectMER/Schematics/`
-6. Install the required dependencies listed above
+3. Extract `Audio.tar.gz` to `LabAPI/configs/Scp999/Audio/`
+4. Extract `Schematics.tar.gz` to `LabAPI/configs/ProjectMER/Schematics/`
+5. Install the required dependencies listed above
    - If you're using the RueI version of RoleAPI, you need to install Scp999-RueI.dll instead of the normal one.
 
 # Commands
