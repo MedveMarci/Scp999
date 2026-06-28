@@ -32,11 +32,9 @@
 
 # Dependencies
 
-| Dependency                                                                      | Required | Description              |
-|---------------------------------------------------------------------------------|----------|--------------------------|
-| [ProjectMER](https://github.com/Michal78900/ProjectMER/releases/latest)         | Yes      | Map/schematic loading    |
-| [RoleAPI](https://github.com/MedveMarci/RoleAPI/releases/latest)                | Yes      | Custom role support      |
-| [SecretLabNAudio](https://github.com/Axwabo/SecretLabNAudio/releases/latest)    | Yes      | Audio playback           |
+| Dependency                                                                      | Required | Description                     |
+|---------------------------------------------------------------------------------|----------|---------------------------------|
+| [RoleAPI](https://github.com/MedveMarci/RoleAPI/releases/latest)                | Yes      | Custom role and ability support |
 
 # Installation
 
