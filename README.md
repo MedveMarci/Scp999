@@ -32,11 +32,9 @@
 
 # Dependencies
 
-| Dependency                                                                      | Required | Description              |
-|---------------------------------------------------------------------------------|----------|--------------------------|
-| [ProjectMER](https://github.com/Michal78900/ProjectMER/releases/latest)         | Yes      | Map/schematic loading    |
-| [RoleAPI](https://github.com/MedveMarci/RoleAPI/releases/latest)                | Yes      | Custom role support      |
-| [SecretLabNAudio](https://github.com/Axwabo/SecretLabNAudio/releases/latest)    | Yes      | Audio playback           |
+| Dependency                                                                      | Required | Description                     |
+|---------------------------------------------------------------------------------|----------|---------------------------------|
+| [RoleAPI](https://github.com/MedveMarci/RoleAPI/releases/latest)                | Yes      | Custom role and ability support |
 
 # Installation
 
@@ -57,8 +55,6 @@
 - If you want to remove, just simply set the player to a different role.
 
 # Credits
-
-![img](https://img.shields.io/github/downloads/MedveMarci/SCP-999/total.svg) <a href="https://github.com/KenleyundLeon/DeltaPatch"><img src="https://image2url.com/images/1759565889245-ff2e02c2-1f19-4f72-bc06-43a3b77fb4bd.png"></a>
 
 - The [main plugin](https://github.com/RisottoMan/SCP-999) created by ``RisottoMan``
 - LabAPI support by ``MedveMarci``
