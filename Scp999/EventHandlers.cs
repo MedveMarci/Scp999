@@ -7,6 +7,7 @@ using LabApi.Events.Arguments.Scp3114Events;
 using LabApi.Events.CustomHandlers;
 using PlayerRoles;
 using Scp999.ApiFeatures;
+using UncomplicatedCustomRoles.API.Features;
 using UncomplicatedCustomRoles.Extensions;
 
 namespace Scp999;
@@ -15,7 +16,7 @@ public class EventHandlers : CustomEventsHandler
 {
     public override void OnScp096AddingTarget(Scp096AddingTargetEventArgs ev)
     {
-        if (ev.Target.TryGetSummonedInstance(out var role) && role.Role.Id == 999)
+        if (ev.Target.TryGetSummonedInstance(out SummonedCustomRole role) && role.Role.Id == 999)
             ev.IsAllowed = false;
 
         base.OnScp096AddingTarget(ev);
@@ -23,7 +24,7 @@ public class EventHandlers : CustomEventsHandler
 
     public override void OnScp049ResurrectingBody(Scp049ResurrectingBodyEventArgs ev)
     {
-        if (ev.Target.TryGetSummonedInstance(out var role) && role.Role.Id == 999)
+        if (ev.Target.TryGetSummonedInstance(out SummonedCustomRole role) && role.Role.Id == 999)
             ev.IsAllowed = false;
 
         base.OnScp049ResurrectingBody(ev);
@@ -31,7 +32,7 @@ public class EventHandlers : CustomEventsHandler
 
     public override void OnScp049UsingSense(Scp049UsingSenseEventArgs ev)
     {
-        if (ev.Target.TryGetSummonedInstance(out var role) && role.Role.Id == 999)
+        if (ev.Target.TryGetSummonedInstance(out SummonedCustomRole role) && role.Role.Id == 999)
             ev.IsAllowed = false;
 
         base.OnScp049UsingSense(ev);
@@ -39,7 +40,7 @@ public class EventHandlers : CustomEventsHandler
 
     public override void OnScp173AddingObserver(Scp173AddingObserverEventArgs ev)
     {
-        if (ev.Target.TryGetSummonedInstance(out var role) && role.Role.Id == 999)
+        if (ev.Target.TryGetSummonedInstance(out SummonedCustomRole role) && role.Role.Id == 999)
             ev.IsAllowed = false;
 
         base.OnScp173AddingObserver(ev);
@@ -47,7 +48,7 @@ public class EventHandlers : CustomEventsHandler
 
     public override void OnScp3114StrangleStarting(Scp3114StrangleStartingEventArgs ev)
     {
-        if (ev.Target.TryGetSummonedInstance(out var role) && role.Role.Id == 999)
+        if (ev.Target.TryGetSummonedInstance(out SummonedCustomRole role) && role.Role.Id == 999)
             ev.IsAllowed = false;
 
         base.OnScp3114StrangleStarting(ev);
@@ -55,8 +56,7 @@ public class EventHandlers : CustomEventsHandler
 
     public override void OnPlayerHurting(PlayerHurtingEventArgs ev)
     {
-        if (ev.Attacker is not { IsSCP: true } || !ev.Player.TryGetSummonedInstance(out var role) ||
-            role.Role.Id != 999) return;
+        if (ev.Attacker is not { IsSCP: true } || !ev.Player.TryGetSummonedInstance(out SummonedCustomRole role) || role.Role.Id != 999) return;
 
         if (ev.Attacker.Role is RoleTypeId.Scp049)
             ev.Player.DisableEffect<CardiacArrest>();
@@ -67,7 +67,7 @@ public class EventHandlers : CustomEventsHandler
 
     public override void OnPlayerEnteringPocketDimension(PlayerEnteringPocketDimensionEventArgs ev)
     {
-        if (ev.Player.TryGetSummonedInstance(out var role) && role.Role.Id == 999)
+        if (ev.Player.TryGetSummonedInstance(out SummonedCustomRole role) && role.Role.Id == 999)
             ev.IsAllowed = false;
 
         base.OnPlayerEnteringPocketDimension(ev);
@@ -75,7 +75,7 @@ public class EventHandlers : CustomEventsHandler
 
     public override void OnPlayerCuffing(PlayerCuffingEventArgs ev)
     {
-        if (ev.Target.TryGetSummonedInstance(out var role) && role.Role.Id == 999)
+        if (ev.Target.TryGetSummonedInstance(out SummonedCustomRole role) && role.Role.Id == 999)
             ev.IsAllowed = false;
 
         base.OnPlayerCuffing(ev);

@@ -12,15 +12,20 @@ namespace Scp999;
 public class Scp999 : Plugin<Config>
 {
     private readonly EventHandlers _eventHandler = new();
+
     public override string Name => "Scp999";
 
     public override string Description =>
         "Adds SCP-999, the tickling monster, as a custom role with unique abilities and features.";
 
     public override string Author => "MedveMarci";
+
     public override Version Version => new(1, 3, 0);
+
     public override Version RequiredApiVersion { get; } = new(LabApiProperties.CompiledVersion);
+
     public static Scp999 Singleton { get; private set; }
+
     private Scp999Role Role { get; set; }
 
     public override void Enable()
@@ -34,7 +39,7 @@ public class Scp999 : Plugin<Config>
     /// Audio ships embedded in the DLL, but a file of the same name placed in the audio directory replaces it.
     private static void SetupAudioOverrides()
     {
-        var directory = Path.Combine(PathManager.Configs.FullName, "Scp999", "Audio");
+        string directory = Path.Combine(PathManager.Configs.FullName, "Scp999", "Audio");
         try
         {
             Directory.CreateDirectory(directory);

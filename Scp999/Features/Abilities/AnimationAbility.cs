@@ -10,16 +10,20 @@ namespace Scp999.Features.Abilities;
 public class AnimationAbility : AbilityBase
 {
     public override string Name => "Dance";
+
     public override string Description => "Play a random funny animation";
+
     public override KeyCode DefaultKey => KeyCode.T;
+
     public override float Cooldown => 15f;
+
     public override bool AutoReleaseLock => false;
 
     protected override void OnExecute(AbilityExecutionContext context)
     {
         context.Player.EnableEffect<Ensnared>();
 
-        var rand = Random.Range(0, 100) + 1;
+        int rand = Random.Range(0, 100) + 1;
         context.LocksDuringExecution = true;
         switch (rand)
         {

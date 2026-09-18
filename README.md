@@ -32,19 +32,19 @@
 
 # Dependencies
 
-| Dependency                                                                      | Required | Description                     |
-|---------------------------------------------------------------------------------|----------|---------------------------------|
-| [RoleAPI](https://github.com/MedveMarci/RoleAPI/releases/latest)                | Yes      | Custom role and ability support |
+| Dependency                                                       | Required | Description                     |
+|------------------------------------------------------------------|----------|---------------------------------|
+| [RoleAPI](https://github.com/MedveMarci/RoleAPI/releases/latest) | Yes      | Custom role and ability support |
 
 # Installation
 
 1. Download the [latest release](https://github.com/MedveMarci/SCP-999/releases/latest):
-   - `Scp999.dll`
-   - `Schematics.tar.gz`
+    - `Scp999.dll`
+    - `Schematics.tar.gz`
 2. Place `Scp999.dll` in `LabAPI/plugins/global/`
 3. Extract `Schematics.tar.gz` to `LabAPI/configs/ProjectMER/Schematics/`
 4. Install the required dependencies listed above
-   - If you're using the RueI version of RoleAPI, you need to install Scp999-RueI.dll instead of the normal one.
+    - If you're using the RueI version of RoleAPI, you need to install Scp999-RueI.dll instead of the normal one.
 
 > The audio files are embedded into `Scp999.dll`.
 > Playing them still requires an `.ogg` reader on the server: the `SecretLabNAudio.NVorbis` module.

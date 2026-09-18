@@ -10,9 +10,13 @@ namespace Scp999.Features.Abilities;
 public class HelloAbility : AbilityBase
 {
     public override string Name => "Hello";
+
     public override string Description => "Greet the players and wave your paw";
+
     public override KeyCode DefaultKey => KeyCode.F;
+
     public override float Cooldown => 15f;
+
     public override bool AutoReleaseLock => false;
 
     protected override void OnExecute(AbilityExecutionContext context)
@@ -21,7 +25,7 @@ public class HelloAbility : AbilityBase
         context.Player.EnableEffect<Ensnared>();
         context.PlayAnimation("HelloAnimation");
 
-        var clipName = Random.Range(0, 2) == 0 ? "hello" : "hi";
+        string clipName = Random.Range(0, 2) == 0 ? "hello" : "hi";
         context.SoundResource = $"Audio.{clipName}.ogg";
 
         if (context.Animator == null) return;
