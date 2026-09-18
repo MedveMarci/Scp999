@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.IO;
 using CustomPlayerEffects;
 using LabApi.Features.Wrappers;
-using LabApi.Loader.Features.Paths;
 using MEC;
 using RoleAPI.API.Abilities;
 using UnityEngine;
@@ -24,7 +22,7 @@ public class HelloAbility : AbilityBase
         context.PlayAnimation("HelloAnimation");
 
         var clipName = Random.Range(0, 2) == 0 ? "hello" : "hi";
-        context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", $"{clipName}.ogg");
+        context.SoundResource = $"Audio.{clipName}.ogg";
 
         if (context.Animator == null) return;
         Timing.RunCoroutine(CheckEndOfAnimation(context.Player, context));

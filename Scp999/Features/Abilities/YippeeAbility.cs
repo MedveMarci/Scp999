@@ -1,5 +1,3 @@
-using System.IO;
-using LabApi.Loader.Features.Paths;
 using RoleAPI.API.Abilities;
 using UnityEngine;
 
@@ -18,6 +16,6 @@ public class YippeeAbility : AbilityBase
         var value = 1;
         var chance = Random.Range(0, 100);
         if (chance >= 60) value = 2;
-        context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", $"yippee-tbh{value}.ogg");
+        context.SoundResource = $"Audio.yippee-tbh{value}.ogg";
     }
 }

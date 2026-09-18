@@ -40,13 +40,20 @@
 
 1. Download the [latest release](https://github.com/MedveMarci/SCP-999/releases/latest):
    - `Scp999.dll`
-   - `Audio.tar.gz`
    - `Schematics.tar.gz`
 2. Place `Scp999.dll` in `LabAPI/plugins/global/`
-3. Extract `Audio.tar.gz` to `LabAPI/configs/Scp999/Audio/`
-4. Extract `Schematics.tar.gz` to `LabAPI/configs/ProjectMER/Schematics/`
-5. Install the required dependencies listed above
+3. Extract `Schematics.tar.gz` to `LabAPI/configs/ProjectMER/Schematics/`
+4. Install the required dependencies listed above
    - If you're using the RueI version of RoleAPI, you need to install Scp999-RueI.dll instead of the normal one.
+
+> The audio files are embedded into `Scp999.dll`.
+> Playing them still requires an `.ogg` reader on the server: the `SecretLabNAudio.NVorbis` module.
+
+# Replacing the sounds
+
+The plugin creates `LabAPI/configs/Scp999/Audio/` on startup. Any file placed there replaces the built-in sound with the
+same name (`circus.ogg`, `funnytoy.ogg`, `health.ogg`, `hello.ogg`, `hi.ogg`, `uwu.ogg`, `yippee-tbh1.ogg`,
+`yippee-tbh2.ogg`); anything missing from the folder is played from the DLL. No restart is needed after swapping a file.
 
 # Commands
 

@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.IO;
 using CustomPlayerEffects;
 using LabApi.Features.Wrappers;
-using LabApi.Loader.Features.Paths;
 using MEC;
 using RoleAPI.API.Abilities;
 using UnityEngine;
@@ -29,7 +27,7 @@ public class AnimationAbility : AbilityBase
             case > 0 and <= 15:
             {
                 context.PlayAnimation("FunAnimation1");
-                context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "circus.ogg");
+                context.SoundResource = "Audio.circus.ogg";
             }
                 break;
 
@@ -37,7 +35,7 @@ public class AnimationAbility : AbilityBase
             case > 15 and <= 60:
             {
                 context.PlayAnimation("FunAnimation2");
-                context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "funnytoy.ogg");
+                context.SoundResource = "Audio.funnytoy.ogg";
             }
                 break;
 
@@ -45,7 +43,7 @@ public class AnimationAbility : AbilityBase
             case > 60 and <= 90:
             {
                 context.PlayAnimation("FunAnimation3");
-                context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "funnytoy.ogg");
+                context.SoundResource = "Audio.funnytoy.ogg";
             }
                 break;
 
@@ -53,7 +51,7 @@ public class AnimationAbility : AbilityBase
             case > 90:
             {
                 context.PlayAnimation("FunAnimation4");
-                context.SoundFile = Path.Combine(PathManager.Configs.FullName, "Scp999", "uwu.ogg");
+                context.SoundResource = "Audio.uwu.ogg";
             }
                 break;
         }
