@@ -14,7 +14,7 @@ public class RunAway : CustomModule
     {
         if (!(ev is PlayerHurtEventArgs playerHurtEventArgs) || playerHurtEventArgs.Player.HasEffect<MovementBoost>())
             return base.OnEvent(name, ev);
-        if (playerHurtEventArgs.Player.TryGetEffect<Slowness>(out var slowness))
+        if (playerHurtEventArgs.Player.TryGetEffect<Slowness>(out Slowness slowness))
             playerHurtEventArgs.Player.EnableEffect<MovementBoost>((byte)(slowness.Intensity + 50), 10f);
         else
             playerHurtEventArgs.Player.EnableEffect<MovementBoost>(50, 10f);

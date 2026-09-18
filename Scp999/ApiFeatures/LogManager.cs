@@ -6,6 +6,7 @@ namespace Scp999.ApiFeatures;
 internal static class LogManager
 {
     private static bool DebugEnabled => Scp999.Singleton?.Config.Debug ?? false;
+
     private static string PluginName => Scp999.Singleton?.Name ?? "Scp999";
 
     public static void Debug(string message)
