@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using LabApi.Features.Wrappers;
 using MEC;
 using RoleAPI.API.Abilities;
+using Scp999.ApiFeatures;
 using UnityEngine;
 
 namespace Scp999.Features.Abilities;
@@ -21,7 +22,7 @@ public class HealAbility : AbilityBase
     protected override void OnExecute(AbilityExecutionContext context)
     {
         context.PlayAnimation("HealthAnimation");
-        context.SoundResource = "Audio.health.ogg";
+        context.Sound = AudioManager.Get("health.ogg");
 
         // Heal all the players in the radius
         foreach (Player ply in Player.ReadyList)

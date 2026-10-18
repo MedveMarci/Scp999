@@ -3,6 +3,7 @@ using CustomPlayerEffects;
 using LabApi.Features.Wrappers;
 using MEC;
 using RoleAPI.API.Abilities;
+using Scp999.ApiFeatures;
 using UnityEngine;
 
 namespace Scp999.Features.Abilities;
@@ -26,7 +27,7 @@ public class HelloAbility : AbilityBase
         context.PlayAnimation("HelloAnimation");
 
         string clipName = Random.Range(0, 2) == 0 ? "hello" : "hi";
-        context.SoundResource = $"Audio.{clipName}.ogg";
+        context.Sound = AudioManager.Get($"{clipName}.ogg");
 
         if (context.Animator == null) return;
         Timing.RunCoroutine(CheckEndOfAnimation(context.Player, context));
