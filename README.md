@@ -51,9 +51,11 @@
 
 # Replacing the sounds
 
-The plugin creates `LabAPI/configs/Scp999/Audio/` on startup. Any file placed there replaces the built-in sound with the
-same name (`circus.ogg`, `funnytoy.ogg`, `health.ogg`, `hello.ogg`, `hi.ogg`, `uwu.ogg`, `yippee-tbh1.ogg`,
-`yippee-tbh2.ogg`); anything missing from the folder is played from the DLL. No restart is needed after swapping a file.
+On startup the plugin saves its built-in sounds to `LabAPI/configs/Scp999/Audio/` (configurable with
+`audio_directory_path`). Files already in the folder are never overwritten. To use your own sound, replace a file with
+your own `.ogg` while keeping its name (`circus.ogg`, `funnytoy.ogg`, `health.ogg`, `hello.ogg`, `hi.ogg`, `uwu.ogg`, `yippee-tbh1.ogg`,
+`yippee-tbh2.ogg`). Any sound missing from the folder is played from the DLL. No restart is
+needed after swapping a file.
 
 # Commands
 

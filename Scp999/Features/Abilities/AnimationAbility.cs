@@ -3,6 +3,7 @@ using CustomPlayerEffects;
 using LabApi.Features.Wrappers;
 using MEC;
 using RoleAPI.API.Abilities;
+using Scp999.ApiFeatures;
 using UnityEngine;
 
 namespace Scp999.Features.Abilities;
@@ -31,7 +32,7 @@ public class AnimationAbility : AbilityBase
             case > 0 and <= 15:
             {
                 context.PlayAnimation("FunAnimation1");
-                context.SoundResource = "Audio.circus.ogg";
+                context.Sound = AudioManager.Get("circus.ogg");
             }
                 break;
 
@@ -39,7 +40,7 @@ public class AnimationAbility : AbilityBase
             case > 15 and <= 60:
             {
                 context.PlayAnimation("FunAnimation2");
-                context.SoundResource = "Audio.funnytoy.ogg";
+                context.Sound = AudioManager.Get("funnytoy.ogg");
             }
                 break;
 
@@ -47,7 +48,7 @@ public class AnimationAbility : AbilityBase
             case > 60 and <= 90:
             {
                 context.PlayAnimation("FunAnimation3");
-                context.SoundResource = "Audio.funnytoy.ogg";
+                context.Sound = AudioManager.Get("funnytoy.ogg");
             }
                 break;
 
@@ -55,7 +56,7 @@ public class AnimationAbility : AbilityBase
             case > 90:
             {
                 context.PlayAnimation("FunAnimation4");
-                context.SoundResource = "Audio.uwu.ogg";
+                context.Sound = AudioManager.Get("uwu.ogg");
             }
                 break;
         }

@@ -1,4 +1,5 @@
 using RoleAPI.API.Abilities;
+using Scp999.ApiFeatures;
 using UnityEngine;
 
 namespace Scp999.Features.Abilities;
@@ -19,6 +20,6 @@ public class YippeeAbility : AbilityBase
         int value = 1;
         int chance = Random.Range(0, 100);
         if (chance >= 60) value = 2;
-        context.SoundResource = $"Audio.yippee-tbh{value}.ogg";
+        context.Sound = AudioManager.Get($"yippee-tbh{value}.ogg");
     }
 }
